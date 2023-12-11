@@ -5,7 +5,6 @@ import numpy
 from numpy import *
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
-import os
 import pandas
 
 

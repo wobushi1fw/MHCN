@@ -34,12 +34,6 @@ class Rating(object):
 
     def __generateSet(self):
         scale = set()
-        # 获得验证集
-        if self.evalSettings.contains('-val'):
-            random.shuffle(self.trainingData)
-            separation = int(self.elemCount()*float(self.evalSettings['-val']))
-            self.testData = self.trainingData[:separation]
-            self.trainingData = self.trainingData[separation:]
         for i,entry in enumerate(self.trainingData):
             userName,itemName,rating = entry
             # 给用户再次编号，方便从关系矩阵中取出

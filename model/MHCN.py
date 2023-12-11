@@ -260,13 +260,13 @@ class MHCN(SocialRecommender,GraphRecommender):
                 user_idx, i_idx, j_idx = batch
                 _, l1 = self.sess.run([train_op, rec_loss],feed_dict={self.u_idx: user_idx, self.neg_idx: j_idx, self.v_idx: i_idx})
                 print(self.foldInfo, 'training:', epoch + 1, 'batch', n, 'rec loss:', l1)
-            if(bestLoss>l1):
+            if(bestLoss>l1 and epoch%10==0):
                     # 获取所有可训练变量
                     best_train_vars=train_vars
                     # 从第三个变量到最后一个变量
                     variables_to_save = best_train_vars[2:]
                     # 构建保存路径
-                    save_path = "model/Parameter/第{}折/epoch:{}/".format(self.k, epoch + 1)
+                    save_path = "model/Parameter/第{}折/epoch{}/".format(self.k, epoch + 1)
                     # 使用 os.makedirs 创建路径（确保路径存在）
                     os.makedirs(save_path, exist_ok=True)
                     # 创建 Saver 对象，指定要保存的变量列表
